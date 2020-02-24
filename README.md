@@ -6,11 +6,11 @@ This package is useful if you seed to access and manipulate the contents of a sw
 
 ## Installation
 
-``bash
-npm install @blendsdk/openapi
+``
+npm install @blendsdk/openapi`--dev
 ``
 
-``bash
+``
 yarn add -D @blendsdk/openapi
 ``
 
