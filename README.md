@@ -1,6 +1,6 @@
 # OpenAPI Specification for TypeScript
 
-This repository contains typescript definitions for the OpenAPI specification. It is meant to enable TypeScript users to
+This repository contains TypeScript definitions for the OpenAPI specification. It is meant to enable TypeScript users to
 create and/or manipulate OpenAPI definition file using typed interface definitions.
 
 # UPDATE:
