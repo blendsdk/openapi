@@ -1,2 +1,2 @@
-# openapi
+# OpenAPI
 OpenAPI definitions for typescript
