@@ -454,6 +454,33 @@ export interface IPathItemObject {
 }
 
 /**
+ * When request bodies or response payloads may be one of a number of different
+ * schemas, a discriminator object can be used to aid in serialization,
+ * deserialization, and validation.
+ *
+ * @export
+ * @interface IDiscriminatorObject
+ */
+export interface IDiscriminatorObject {
+    /**
+     *  The name of the property in the payload that will hold the
+     * discriminator value.
+     *
+     * @type {string}
+     * @memberof IDiscriminatorObject
+     */
+    propertyName:string;
+    /**
+     * An object to hold mappings between payload values and schema names or
+     * references.
+     *
+     * @type {IDictionaryOf<string>}
+     * @memberof IDiscriminatorObject
+     */
+    mapping?:IDictionaryOf<string>
+}
+
+/**
  * Holds the relative paths to the individual endpoints and their operations.
  * The path is appended to the URL from the Server Object in order to construct
  * the full URL. The Paths MAY be empty, due to ACL constraints.
