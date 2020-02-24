@@ -30,6 +30,99 @@ const a130: IOAuthFlowObject;
 const a131: ISecurityRequirementObject;
 
 /**
+ * The Schema Object allows the definition of input and output data types.
+ * These types can be objects, but also primitives and arrays. This object is
+ * an extended subset of the JSON Schema Specification Wright Draft 00.
+ *
+ * @export
+ * @interface ISchemaObject
+ */
+export interface ISchemaObject extends IJSONSchema {
+    /**
+     * A true value adds "null" to the allowed type specified by the type
+     * keyword, only if type is explicitly defined within the same
+     * Schema Object. Other Schema Object constraints retain their
+     * defined behavior, and therefore may disallow the use of null
+     * as a value. A false value leaves the specified or default
+     * type unmodified. The default value is false.
+     *
+     * @type {boolean}
+     * @memberof ISchemaObject
+     */
+    nullable?: boolean;
+    /**
+     * Adds support for polymorphism. The discriminator is an object
+     * name that is used to differentiate between other schemas which
+     * may satisfy the payload description. See Composition and
+     * Inheritance for more details.
+     *
+     * @type {IDiscriminatorObject}
+     * @memberof ISchemaObject
+     */
+    discriminator?: IDiscriminatorObject;
+    /**
+     * Relevant only for Schema "properties" definitions. Declares the
+     * property as "read only". This means that it MAY be sent as part
+     * of a response but SHOULD NOT be sent as part of the request.
+     * If the property is marked as readOnly being true and is in the
+     * required list, the required will take effect on the response
+     * only. A property MUST NOT be marked as both readOnly and
+     * writeOnly being true. Default value is false.
+     *
+     * @type {boolean}
+     * @memberof ISchemaObject
+     */
+    readOnly?: boolean;
+    /**
+     * Relevant only for Schema "properties" definitions. Declares the property
+     * as "write only". Therefore, it MAY be sent as part of a request
+     * but SHOULD NOT be sent as part of the response. If the property
+     * is marked as writeOnly being true and is in the required list,
+     * the required will take effect on the request only. A property
+     * MUST NOT be marked as both readOnly and writeOnly being true.
+     * Default value is false.
+     *
+     * @type {boolean}
+     * @memberof ISchemaObject
+     */
+    writeOnly?: boolean;
+    /**
+     * This MAY be used only on properties schemas. It has no effect on root
+     * schemas. Adds additional metadata to describe the XML
+     * representation of this property.
+     *
+     * @type {IXMLObject}
+     * @memberof ISchemaObject
+     */
+    xml?: IXMLObject;
+    /**
+     * Additional external documentation for this schema.
+     *
+     * @type {IExternalDocumentationObject}
+     * @memberof ISchemaObject
+     */
+    externalDocs?: IExternalDocumentationObject;
+    /**
+     * A free-form property to include an example of an instance for this schema.
+     * To represent examples that cannot be naturally represented in JSON or
+     * YAML, a string value can be used to contain the example with
+     * escaping where necessary.
+     *
+     * @type {*}
+     * @memberof ISchemaObject
+     */
+    example: any;
+    /**
+     * Specifies that a schema is deprecated and SHOULD be transitioned
+     * out of usage. Default value is false.
+     *
+     * @type {boolean}
+     * @memberof ISchemaObject
+     */
+    deprecated: boolean;
+}
+
+/**
  * Describes a single response from an API Operation, including design-time,
  * static links to operations based on the response.
  *
@@ -46,7 +139,7 @@ export interface IResponseObject {
      */
     description: string;
     /**
-     * Maps a header name to its definition. RFC7230 states header 
+     * Maps a header name to its definition. RFC7230 states header
      * names are case insensitive. If a response header is defined
      * with the name "Content-Type", it SHALL be ignored.
      *
@@ -77,8 +170,8 @@ export interface IResponseObject {
 
 /**
  * A metadata object that allows for more fine-tuned XML model definitions.
- * When using arrays, XML element names are not inferred 
- * (for singular/plural forms) and the name property SHOULD be used to 
+ * When using arrays, XML element names are not inferred
+ * (for singular/plural forms) and the name property SHOULD be used to
  * add that information. See examples for expected behavior.
  *
  * @export
@@ -177,7 +270,6 @@ export interface IMediaTypeObject {
     encoding?: IDictionaryOf<IEncodingObject>;
 }
 
-
 /**
  * A map of possible out-of band callbacks related to the parent operation.
  * Each value in the map is a Path Item Object that describes a set of
@@ -190,7 +282,7 @@ export interface IMediaTypeObject {
  * @interface ICallbackObject
  * @extends {IDictionaryOf<IPathItemObject>}
  */
-export interface ICallbackObject extends IDictionaryOf<IPathItemObject> { }
+export interface ICallbackObject extends IDictionaryOf<IPathItemObject> {}
 
 /**
  * A single encoding definition applied to a single schema property.
@@ -202,8 +294,8 @@ export interface IEncodingObject {
     /**
      * The Content-Type for encoding a specific property.
      * Default value depends on the property type: for string with
-     * format being binary – application/octet-stream; for other 
-     * primitive types – text/plain; for object - application/json; 
+     * format being binary – application/octet-stream; for other
+     * primitive types – text/plain; for object - application/json;
      * for array – the default is defined based on the inner type.
      * The value can be a specific media type (e.g. application/json),
      * a wildcard media type (e.g. image/*), or a comma-separated
@@ -718,9 +810,7 @@ export interface IOperationObject {
  * @interface IExtension
  * @extends {IDictionaryOf<any>}
  */
-export interface IExtension extends IDictionaryOf<any> {
-
-}
+export interface IExtension extends IDictionaryOf<any> {}
 
 /**
  * Describes the operations available on a single path. A Path Item MAY be empty,
@@ -843,8 +933,8 @@ export interface IPathItemObject {
  */
 export interface ILinkObject {
     /**
-     * A relative or absolute URI reference to an OAS operation. This field is mutually exclusive 
-     * of the operationId field, and MUST point to an Operation Object. Relative operationRef 
+     * A relative or absolute URI reference to an OAS operation. This field is mutually exclusive
+     * of the operationId field, and MUST point to an Operation Object. Relative operationRef
      * values MAY be used to locate an existing Operation Object in the OpenAPI definition.
      *
      * @type {string}
@@ -939,8 +1029,7 @@ export interface IDiscriminatorObject {
  * @interface IPathsObject
  * @extends {IDictionaryOf<IPathItemObject>}
  */
-export interface IPathsObject
-    extends IDictionaryOf<IPathItemObject> { }
+export interface IPathsObject extends IDictionaryOf<IPathItemObject> {}
 
 /**
  * Defines a security scheme that can be used by the operations. Supported schemes
@@ -1027,7 +1116,7 @@ export interface ISecuritySchemeObject {
  * @interface ISecurityRequirementObject
  * @extends {IDictionaryOf<string>}
  */
-export interface ISecurityRequirementObject extends IDictionaryOf<string> { }
+export interface ISecurityRequirementObject extends IDictionaryOf<string> {}
 
 /**
  * Allows referencing an external resource for extended documentation.
