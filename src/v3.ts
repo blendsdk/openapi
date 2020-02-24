@@ -30,6 +30,55 @@ const a130: IOAuthFlowObject;
 const a131: ISecurityRequirementObject;
 
 /**
+ * Each Media Type Object provides schema and examples for the
+ * media type identified by its key.
+ *
+ * @export
+ * @interface IMediaTypeObject
+ */
+export interface IMediaTypeObject {
+    /**
+     * The schema defining the content of the request, response, or parameter.
+     *
+     * @type {(ISchemaObject | IReferenceObject)}
+     * @memberof IMediaTypeObject
+     */
+    schema?: ISchemaObject | IReferenceObject;
+    /**
+     * Example of the media type. The example object SHOULD be in the correct format
+     * as specified by the media type. The example field is mutually exclusive of
+     * the examples field. Furthermore, if referencing a schema which contains
+     * an example, the example value SHALL override the example provided by the schema.
+     *
+     * @type {*}
+     * @memberof IMediaTypeObject
+     */
+    example?: any;
+    /**
+     * Examples of the media type. Each example object SHOULD match the media
+     * type and specified schema if present. The examples field is mutually
+     * exclusive of the example field. Furthermore, if referencing a schema
+     * which contains an example, the examples value SHALL override the
+     * example provided by the schema.
+     *
+     * @type {(IDictionaryOf<IExampleObject|IReferenceObject>)}
+     * @memberof IMediaTypeObject
+     */
+    examples?: IDictionaryOf<IExampleObject | IReferenceObject>;
+    /**
+     * A map between a property name and its encoding information. The key,
+     * being the property name, MUST exist in the schema as a property.
+     * The encoding object SHALL only apply to requestBody objects when
+     * the media type is multipart or application/x-www-form-urlencoded.
+     *
+     * @type {IDictionaryOf<IEncodingObject>}
+     * @memberof IMediaTypeObject
+     */
+    encoding?: IDictionaryOf<IEncodingObject>;
+}
+
+
+/**
  * A map of possible out-of band callbacks related to the parent operation.
  * Each value in the map is a Path Item Object that describes a set of
  * requests that may be initiated by the API provider and the expected
@@ -41,7 +90,7 @@ const a131: ISecurityRequirementObject;
  * @interface ICallbackObject
  * @extends {IDictionaryOf<IPathItemObject>}
  */
-export interface ICallbackObject extends IDictionaryOf<IPathItemObject> {}
+export interface ICallbackObject extends IDictionaryOf<IPathItemObject> { }
 
 /**
  * A single encoding definition applied to a single schema property.
@@ -63,7 +112,7 @@ export interface IEncodingObject {
      * @type {string}
      * @memberof IEncodingObject
      */
-    contentType?:string;
+    contentType?: string;
     /**
      * A map allowing additional information to be provided as headers,
      * for example Content-Disposition. Content-Type is described separately
@@ -73,7 +122,7 @@ export interface IEncodingObject {
      * @type {(IDictionaryOf<IHeaderObject | IReferenceObject>)}
      * @memberof IEncodingObject
      */
-    headers?: IDictionaryOf<IHeaderObject | IReferenceObject>
+    headers?: IDictionaryOf<IHeaderObject | IReferenceObject>;
     /**
      * Describes how a specific property value will be serialized depending
      * on its type. See Parameter Object for details on the style property.
@@ -84,7 +133,7 @@ export interface IEncodingObject {
      * @type {string}
      * @memberof IEncodingObject
      */
-    style?:string;
+    style?: string;
     /**
      * When this is true, property values of type array or object generate
      * separate parameters for each value of the array, or key-value-pair
@@ -96,7 +145,7 @@ export interface IEncodingObject {
      * @type {boolean}
      * @memberof IEncodingObject
      */
-    explode?:boolean;
+    explode?: boolean;
     /**
      * Determines whether the parameter value SHOULD allow reserved
      * characters, as defined by RFC3986 :/?#[]@!$&'()*+,;= to be
@@ -107,7 +156,7 @@ export interface IEncodingObject {
      * @type {boolean}
      * @memberof IEncodingObject
      */
-    allowReserved?:boolean;
+    allowReserved?: boolean;
 }
 
 /**
