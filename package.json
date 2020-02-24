@@ -1,0 +1,25 @@
+{
+    "name": "@blendsdk/openapi",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "watch": "rm -fR ./dist && tsc -w"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:blendsdk/openapi.git"
+    },
+    "dependencies": {
+        "typescript": "^3.8.2",
+        "yamljs": "^0.3.0"
+    },
+    "devDependencies": {
+        "@types/node": "^13.7.4",
+        "@types/yamljs": "^0.2.30"
+    }
+}
