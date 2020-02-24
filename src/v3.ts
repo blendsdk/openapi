@@ -22,6 +22,45 @@ export interface ILicenseObject {
 }
 
 /**
+ * Allows configuration of the supported OAuth Flows.
+ *
+ * @export
+ * @interface IOAuthFlowsObject
+ */
+export interface IOAuthFlowsObject {
+    /**
+     * Configuration for the OAuth Implicit flow
+     *
+     * @type {IOAuthFlowObject}
+     * @memberof IOAuthFlowsObject
+     */
+    implicit?: IOAuthFlowObject;
+    /**
+     * Configuration for the OAuth Resource Owner Password flow
+     *
+     * @type {IOAuthFlowObject}
+     * @memberof IOAuthFlowsObject
+     */
+    password?: IOAuthFlowObject;
+    /**
+     * Configuration for the OAuth Client Credentials flow. Previously
+     * called application in OpenAPI 2.0.
+     *
+     * @type {IOAuthFlowObject}
+     * @memberof IOAuthFlowsObject
+     */
+    clientCredentials?: IOAuthFlowObject;
+    /**
+     * Configuration for the OAuth Authorization Code flow. Previously
+     * called accessCode in OpenAPI 2.0.
+     *
+     * @type {IOAuthFlowObject}
+     * @memberof IOAuthFlowsObject
+     */
+    authorizationCode?: IOAuthFlowObject;
+}
+
+/**
  * Configuration details for a supported OAuth Flow
  *
  * @export
