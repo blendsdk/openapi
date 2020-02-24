@@ -330,15 +330,25 @@ export interface IOperationObject {
 }
 
 /**
+ * Interface for describing an extension to an object
+ *
+ * @export
+ * @interface IExtension
+ * @extends {IDictionaryOf<any>}
+ */
+export interface IExtension extends IDictionaryOf<any> {
+
+}
+
+/**
  * Describes the operations available on a single path. A Path Item MAY be empty,
  * due to ACL constraints. The path itself is still exposed to the documentation
  * viewer but they will not know which operations and parameters are available.
  *
  * @export
  * @interface IPathItemObject
- * @template OperationExtensionType
  */
-export interface IPathItemObject<OperationExtensionType = {}> {
+export interface IPathItemObject {
     /**
      * Allows for an external definition of this path item. The referenced
      * structure MUST be in the format of a Path Item Object.
@@ -367,59 +377,59 @@ export interface IPathItemObject<OperationExtensionType = {}> {
     /**
      * A definition of a GET operation on this path.
      *
-     * @type {(IOperationObject & OperationExtensionType)}
+     * @type {(IOperationObject & IExtension)}
      * @memberof IPathItemObject
      */
-    get?: IOperationObject & OperationExtensionType;
+    get?: IOperationObject & IExtension;
     /**
      * A definition of a PUT operation on this path.
      *
-     * @type {(IOperationObject & OperationExtensionType)}
+     * @type {(IOperationObject & IExtension)}
      * @memberof IPathItemObject
      */
-    put?: IOperationObject & OperationExtensionType;
+    put?: IOperationObject & IExtension;
     /**
      * A definition of a POST operation on this path.
      *
-     * @type {(IOperationObject & OperationExtensionType)}
+     * @type {(IOperationObject & IExtension)}
      * @memberof IPathItemObject
      */
-    post?: IOperationObject & OperationExtensionType;
+    post?: IOperationObject & IExtension;
     /**
      * A definition of a DELETE operation on this path.
      *
-     * @type {(IOperationObject & OperationExtensionType)}
+     * @type {(IOperationObject & IExtension)}
      * @memberof IPathItemObject
      */
-    delete?: IOperationObject & OperationExtensionType;
+    delete?: IOperationObject & IExtension;
     /**
      * A definition of a OPTIONS operation on this path.
      *
-     * @type {(IOperationObject & OperationExtensionType)}
+     * @type {(IOperationObject & IExtension)}
      * @memberof IPathItemObject
      */
-    options?: IOperationObject & OperationExtensionType;
+    options?: IOperationObject & IExtension;
     /**
      * A definition of a HEAD operation on this path.
      *
-     * @type {(IOperationObject & OperationExtensionType)}
+     * @type {(IOperationObject & IExtension)}
      * @memberof IPathItemObject
      */
-    head?: IOperationObject & OperationExtensionType;
+    head?: IOperationObject & IExtension;
     /**
      * A definition of a PATCH operation on this path.
      *
-     * @type {(IOperationObject & OperationExtensionType)}
+     * @type {(IOperationObject & IExtension)}
      * @memberof IPathItemObject
      */
-    patch?: IOperationObject & OperationExtensionType;
+    patch?: IOperationObject & IExtension;
     /**
      * A definition of a TRACE operation on this path.
      *
-     * @type {(IOperationObject & OperationExtensionType)}
+     * @type {(IOperationObject & IExtension)}
      * @memberof IPathItemObject
      */
-    trace?: IOperationObject & OperationExtensionType;
+    trace?: IOperationObject & IExtension;
     /**
      * An alternative server array to service all operations in this path.
      *
@@ -459,12 +469,10 @@ export interface IPathItemObject<OperationExtensionType = {}> {
  *
  * @export
  * @interface IPathsObject
- * @extends {(IDictionaryOf<IPathItemObject<OperationExtensionType> & ExtensionType>)}
- * @template ExtensionType
- * @template OperationExtensionType
+ * @extends {IDictionaryOf<IPathItemObject>}
  */
-export interface IPathsObject<ExtensionType = {}, OperationExtensionType = {}>
-    extends IDictionaryOf<IPathItemObject<OperationExtensionType> & ExtensionType> {}
+export interface IPathsObject
+    extends IDictionaryOf<IPathItemObject> {}
 
 /**
  * Lists the required security schemes to execute this operation. The name used
@@ -477,6 +485,12 @@ export interface IPathsObject<ExtensionType = {}, OperationExtensionType = {}>
  */
 export interface ISecurityRequirementObject extends IDictionaryOf<string> {}
 
+/**
+ * Allows referencing an external resource for extended documentation.
+ *
+ * @export
+ * @interface IExternalDocumentationObject
+ */
 export interface IExternalDocumentationObject {
     /**
      * The URL for the target documentation. Value MUST be in the format of a URL.
@@ -598,7 +612,7 @@ export interface IRequestBodyObject {
  * @export
  * @interface IOpenAPI
  */
-export interface IOpenAPI<PathExtensionType = {}, OperationExtensionType = {}> {
+export interface IOpenAPI {
     /**
      * REQUIRED. This string MUST be the semantic version number of the OpenAPI
      * Specification version that the OpenAPI document uses. The openapi field
@@ -630,10 +644,10 @@ export interface IOpenAPI<PathExtensionType = {}, OperationExtensionType = {}> {
     /**
      * The available paths and operations for the API.
      *
-     * @type {IPathsObject<PathExtensionType, OperationExtensionType>}
+     * @type {IPathsObject}
      * @memberof IOpenAPI
      */
-    paths: IPathsObject<PathExtensionType, OperationExtensionType>;
+    paths: IPathsObject;
     /**
      * An element to hold various schemas for the specification.
      *
