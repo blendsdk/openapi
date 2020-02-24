@@ -22,6 +22,44 @@ export interface ILicenseObject {
 }
 
 /**
+ * Configuration details for a supported OAuth Flow
+ *
+ * @export
+ * @interface IOAuthFlowObject
+ */
+export interface IOAuthFlowObject {
+    /**
+     * The authorization URL to be used for this flow. This MUST be in the form of a URL.
+     *
+     * @type {string}
+     * @memberof IOAuthFlowObject
+     */
+    authorizationUrl: string;
+    /**
+     *  The token URL to be used for this flow. This MUST be in the form of a URL.
+     *
+     * @type {string}
+     * @memberof IOAuthFlowObject
+     */
+    tokenUrl: string;
+    /**
+     * The URL to be used for obtaining refresh tokens. This MUST be in the form of a URL.
+     *
+     * @type {string}
+     * @memberof IOAuthFlowObject
+     */
+    refreshUrl?: string;
+    /**
+     * The available scopes for the OAuth2 security scheme. A map between the scope
+     * name and a short description for it. The map MAY be empty.
+     *
+     * @type {IDictionaryOf<string>}
+     * @memberof IOAuthFlowObject
+     */
+    scopes: IDictionaryOf<string>;
+}
+
+/**
  * Contact information for the exposed API.
  *
  * @export
@@ -488,14 +526,14 @@ export interface ILinkObject {
      * @type {IDictionaryOf<any>}
      * @memberof ILinkObject
      */
-    parameters?: IDictionaryOf<any>
+    parameters?: IDictionaryOf<any>;
     /**
      * A literal value or {expression} to use as a request body when calling the target operation.
      *
      * @type {IDictionaryOf<any>}
      * @memberof ILinkObject
      */
-    requestBody?: IDictionaryOf<any>
+    requestBody?: IDictionaryOf<any>;
     /**
      * A description of the link. CommonMark syntax MAY be used for rich text representation.
      *
@@ -536,7 +574,7 @@ export interface IDiscriminatorObject {
      * @type {IDictionaryOf<string>}
      * @memberof IDiscriminatorObject
      */
-    mapping?: IDictionaryOf<string>
+    mapping?: IDictionaryOf<string>;
 }
 
 /**
