@@ -454,6 +454,65 @@ export interface IPathItemObject {
 }
 
 /**
+ * The Link object represents a possible design-time link for a response
+ *
+ * @export
+ * @interface ILinkObject
+ */
+export interface ILinkObject {
+    /**
+     * A relative or absolute URI reference to an OAS operation. This field is mutually exclusive 
+     * of the operationId field, and MUST point to an Operation Object. Relative operationRef 
+     * values MAY be used to locate an existing Operation Object in the OpenAPI definition.
+     *
+     * @type {string}
+     * @memberof ILinkObject
+     */
+    operationRef?: string;
+    /**
+     * The name of an existing, resolvable OAS operation, as defined with a unique operationId.
+     * This field is mutually exclusive of the operationRef field.
+     *
+     * @type {string}
+     * @memberof ILinkObject
+     */
+    operationId?: string;
+    /**
+     * A map representing parameters to pass to an operation as specified with operationId or
+     * identified via operationRef. The key is the parameter name to be used, whereas the
+     * value can be a constant or an expression to be evaluated and passed to the linked operation.
+     * The parameter name can be qualified using the parameter location [{in}.]{name}
+     * for operations that use the same parameter name in different
+     * locations (e.g. path.id).
+     *
+     * @type {IDictionaryOf<any>}
+     * @memberof ILinkObject
+     */
+    parameters?: IDictionaryOf<any>
+    /**
+     * A literal value or {expression} to use as a request body when calling the target operation.
+     *
+     * @type {IDictionaryOf<any>}
+     * @memberof ILinkObject
+     */
+    requestBody?: IDictionaryOf<any>
+    /**
+     * A description of the link. CommonMark syntax MAY be used for rich text representation.
+     *
+     * @type {string}
+     * @memberof ILinkObject
+     */
+    description?: string;
+    /**
+     * A server object to be used by the target operation
+     *
+     * @type {IServerObject}
+     * @memberof ILinkObject
+     */
+    server?: IServerObject;
+}
+
+/**
  * When request bodies or response payloads may be one of a number of different
  * schemas, a discriminator object can be used to aid in serialization,
  * deserialization, and validation.
@@ -469,7 +528,7 @@ export interface IDiscriminatorObject {
      * @type {string}
      * @memberof IDiscriminatorObject
      */
-    propertyName:string;
+    propertyName: string;
     /**
      * An object to hold mappings between payload values and schema names or
      * references.
@@ -477,7 +536,7 @@ export interface IDiscriminatorObject {
      * @type {IDictionaryOf<string>}
      * @memberof IDiscriminatorObject
      */
-    mapping?:IDictionaryOf<string>
+    mapping?: IDictionaryOf<string>
 }
 
 /**
@@ -499,7 +558,7 @@ export interface IDiscriminatorObject {
  * @extends {IDictionaryOf<IPathItemObject>}
  */
 export interface IPathsObject
-    extends IDictionaryOf<IPathItemObject> {}
+    extends IDictionaryOf<IPathItemObject> { }
 
 /**
  * Lists the required security schemes to execute this operation. The name used
@@ -510,7 +569,7 @@ export interface IPathsObject
  * @interface ISecurityRequirementObject
  * @extends {IDictionaryOf<string>}
  */
-export interface ISecurityRequirementObject extends IDictionaryOf<string> {}
+export interface ISecurityRequirementObject extends IDictionaryOf<string> { }
 
 /**
  * Allows referencing an external resource for extended documentation.
