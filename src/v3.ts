@@ -1,34 +1,3 @@
-const a10: IOpenAPI;
-const a11: IInfoObject;
-const a12: IContactObject;
-const a13: ILicenseObject;
-const a14: IServerObject;
-const a15: IServerVariableObject;
-const a16: IComponentsObject;
-const a17: IPathsObject;
-const a18: IPathItemObject;
-const a19: IOperationObject;
-const a110: IExternalDocumentationObject;
-const a111: IParameterObject;
-const a112: IRequestBodyObject;
-const a113: IMediaTypeObject;
-const a114: IEncodingObject;
-const a115: IResponsesObject;
-const a116: IResponseObject;
-const a117: ICallbackObject;
-const a118: IExampleObject;
-const a121: ILinkObject;
-const a122: IHeaderObject;
-const a123: ITagObject;
-const a124: IReferenceObject;
-const a125: ISchemaObject;
-const a126: IDiscriminatorObject;
-const a127: IXMLObject;
-const a128: ISecuritySchemeObject;
-const a129: IOAuthFlowsObject;
-const a130: IOAuthFlowObject;
-const a131: ISecurityRequirementObject;
-
 /**
  * Holds a set of reusable objects for different aspects of the OAS.
  * All objects defined within the components object will have no
