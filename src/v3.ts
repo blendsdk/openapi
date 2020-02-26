@@ -30,6 +30,95 @@ const a130: IOAuthFlowObject;
 const a131: ISecurityRequirementObject;
 
 /**
+ * Holds a set of reusable objects for different aspects of the OAS.
+ * All objects defined within the components object will have no
+ * effect on the API unless they are explicitly referenced
+ * from properties outside the components object.
+ *
+ * @export
+ * @interface IComponentsObject
+ */
+export interface IComponentsObject {
+    /**
+     * An object to hold reusable Schema Objects.
+     *
+     * @type {(IDictionaryOf<ISchemaObject|IReferenceObject>)}
+     * @memberof IComponentsObject
+     */
+    schemas?: IDictionaryOf<ISchemaObject | IReferenceObject>;
+    /**
+     * An object to hold reusable Response Objects.
+     *
+     * @type {(IDictionaryOf<IResponseObject | IReferenceObject>)}
+     * @memberof IComponentsObject
+     */
+    responses?: IDictionaryOf<IResponseObject | IReferenceObject>;
+    /**
+     * An object to hold reusable Parameter Objects.
+     *
+     * @type {(IDictionaryOf<IParameterObject|IReferenceObject>)}
+     * @memberof IComponentsObject
+     */
+    parameters?: IDictionaryOf<IParameterObject | IReferenceObject>;
+    /**
+     * An object to hold reusable Example Objects.
+     *
+     * @type {(IDictionaryOf<IExampleObject|IReferenceObject>)}
+     * @memberof IComponentsObject
+     */
+    examples?: IDictionaryOf<IExampleObject | IReferenceObject>;
+    /**
+     * An object to hold reusable Request Body Objects.
+     *
+     * @type {(IDictionaryOf<IRequestBodyObject|IReferenceObject>)}
+     * @memberof IComponentsObject
+     */
+    requestBodies?: IDictionaryOf<IRequestBodyObject | IReferenceObject>;
+    /**
+     * An object to hold reusable Header Objects.
+     *
+     * @type {(IDictionaryOf<IHeaderObject|IReferenceObject>)}
+     * @memberof IComponentsObject
+     */
+    headers?: IDictionaryOf<IHeaderObject | IReferenceObject>;
+    /**
+     * An object to hold reusable Security Scheme Objects.
+     *
+     * @type {(IDictionaryOf<ISecurityRequirementObject|IReferenceObject>)}
+     * @memberof IComponentsObject
+     */
+    securitySchemes?: IDictionaryOf<ISecurityRequirementObject | IReferenceObject>;
+    /**
+     * An object to hold reusable Link Objects.
+     *
+     * @type {(IDictionaryOf<ILinkObject|IReferenceObject>)}
+     * @memberof IComponentsObject
+     */
+    links?: IDictionaryOf<ILinkObject | IReferenceObject>;
+    /**
+     * An object to hold reusable Callback Objects.
+     *
+     * @type {(IDictionaryOf<ICallbackObject|IReferenceObject>)}
+     * @memberof IComponentsObject
+     */
+    callbacks?: IDictionaryOf<ICallbackObject | IReferenceObject>;
+}
+
+/**
+ * The Header Object follows the structure of the Parameter Object with the following changes: 
+ * - name MUST NOT be specified, it is given in the corresponding headers map.
+ * - in MUST NOT be specified, it is implicitly in header.
+ * - All traits that are affected by the location MUST be applicable to a 
+ *      location of header (for example, style).
+ *
+ * @export
+ * @interface IHeaderObject
+ * @extends {IParameterObject}
+ */
+export interface IHeaderObject extends IParameterObject {
+
+}
+/**
  * A container for the expected responses of an operation. The container
  * maps a HTTP response code to the expected response. The documentation
  * is not necessarily expected to cover all possible HTTP response codes
@@ -462,7 +551,7 @@ export interface IMediaTypeObject {
  * @interface ICallbackObject
  * @extends {IDictionaryOf<IPathItemObject>}
  */
-export interface ICallbackObject extends IDictionaryOf<IPathItemObject> {}
+export interface ICallbackObject extends IDictionaryOf<IPathItemObject> { }
 
 /**
  * A single encoding definition applied to a single schema property.
@@ -990,7 +1079,7 @@ export interface IOperationObject {
  * @interface IExtension
  * @extends {IDictionaryOf<any>}
  */
-export interface IExtension extends IDictionaryOf<any> {}
+export interface IExtension extends IDictionaryOf<any> { }
 
 /**
  * Describes the operations available on a single path. A Path Item MAY be empty,
@@ -1209,7 +1298,7 @@ export interface IDiscriminatorObject {
  * @interface IPathsObject
  * @extends {IDictionaryOf<IPathItemObject>}
  */
-export interface IPathsObject extends IDictionaryOf<IPathItemObject> {}
+export interface IPathsObject extends IDictionaryOf<IPathItemObject> { }
 
 /**
  * Defines a security scheme that can be used by the operations. Supported schemes
@@ -1296,7 +1385,7 @@ export interface ISecuritySchemeObject {
  * @interface ISecurityRequirementObject
  * @extends {IDictionaryOf<string>}
  */
-export interface ISecurityRequirementObject extends IDictionaryOf<string> {}
+export interface ISecurityRequirementObject extends IDictionaryOf<string> { }
 
 /**
  * Allows referencing an external resource for extended documentation.
